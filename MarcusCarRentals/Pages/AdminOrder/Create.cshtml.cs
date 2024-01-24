@@ -32,9 +32,9 @@ namespace MarcusCarRentals.Pages.AdminOrder
         public IActionResult OnPost()
         {
           if (!ModelState.IsValid || _orderRep == null || Order == null)
-            {
+          {
                 return Page();
-            }
+          }
 
             _orderRep.Add(Order);
 

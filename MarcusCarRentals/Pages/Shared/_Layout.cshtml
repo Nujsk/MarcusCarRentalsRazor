@@ -25,6 +25,21 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-page="/Privacy">Privacy</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-page="/Cars/Index">Cars</a>
+                        </li>
+                        @if (Context.Session.GetString("UserId") != null && Context.Session.GetInt32("IsAdmin") == 0)
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-page="/UserOrders/DisplayOrders">My Orders</a>
+                            </li>
+                        }
+                        @if (Context.Session.GetInt32("IsAdmin") == 1)
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-page="/Admin/Index">Admin</a>
+                            </li>
+                        }
                     </ul>
                     <div>
                         @if (Context.Session.GetString("UserId") != null)

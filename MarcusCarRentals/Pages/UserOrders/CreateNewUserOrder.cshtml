@@ -1,0 +1,24 @@
+﻿@page
+@model MarcusCarRentals.Pages.UserOrders.CreateNewUserOrderModel
+@{
+}
+<h1>Create New User Order</h1>
+
+<form method="post">
+    <div>
+        <label for="CarId">Car ID:</label>
+        <input type="text" id="CarId" name="CarId" />
+    </div>
+
+    <div>
+        <label for="StartDate">Start Date:</label>
+        <input type="text" id="StartDate" name="StartDate" />
+    </div>
+
+    <div>
+        <label for="EndDate">End Date:</label>
+        <input type="text" id="EndDate" name="EndDate" />
+    </div>
+
+    <input type="submit" value="Place Order" />
+</form>
