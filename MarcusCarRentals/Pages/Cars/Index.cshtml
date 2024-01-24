@@ -1,0 +1,49 @@
+﻿@page
+@model MarcusCarRentals.Pages.Cars.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Brand)
+            </th>
+            <th>
+                Model)
+            </th>
+            <th>
+                Year)
+            </th>
+            <th>
+                IsAvailable)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Cars) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Brand)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Model)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Year)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsAvailable)
+            </td>
+            <td>
+                <a asp-page="./Details" asp-route-id="@item.CarId">Details</a>
+                <a asp-page="./RentCar" asp-route-id="@item.CarId">Rent this car</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
