@@ -57,17 +57,20 @@ namespace MarcusCarRentals.Data
         }
         public IEnumerable<Order>GetActiveOrders(string userEmail)
         {
-            return applicationDbContext.Orders
-            .Include(o => o.Car)
-            .Where(o => o.User.Email == userEmail && o.IsActive)
-            .ToList();
+            var activeOrders = applicationDbContext.Orders
+                .Include(o => o.Car)
+                .Include(c=>c.User)
+                .Where(o => o.User.Email == userEmail && o.IsActive)
+                .ToList();
+            return activeOrders;
         }
         public IEnumerable<Order> GetPastOrders(string userEmail)
         {
-            return applicationDbContext.Orders
+            var inactiveOrders = applicationDbContext.Orders
                 .Include(o => o.Car)
                 .Where(o => o.User.Email == userEmail && !o.IsActive)
                 .ToList();
+            return inactiveOrders;
         }
     }
 }

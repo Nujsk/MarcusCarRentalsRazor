@@ -2,10 +2,11 @@
 @model MarcusCarRentals.Pages.Admin.IndexModel
 @{
 }
-<h1>Admin Panel</h1>
+<link rel="stylesheet" href="/css/AdminIndexStyle.css" />
+<h1>Admin</h1>
 
 <ul>
-    <li><a asp-page="/AdminCar/Index">Manage Cars</a></li>
-    <li><a asp-page="/AdminUser/Index">Manage Users</a></li>
-    <li><a asp-page="/AdminOrder/Index">Manage Orders</a></li>
+    <li><a href="/AdminCar/Index">Hantera Bilar</a></li>
+    <li><a href="/AdminUser/Index">Hantera Användare</a></li>
+    <li><a href="/AdminOrder/Index">Hantera Ordrar</a></li>
 </ul>

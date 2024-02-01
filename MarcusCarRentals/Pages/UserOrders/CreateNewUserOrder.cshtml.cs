@@ -1,7 +1,10 @@
 using MarcusCarRentals.Data;
 using MarcusCarRentals.Models;
+using MarcusCarRentals.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 
 namespace MarcusCarRentals.Pages.UserOrders
 {
@@ -18,10 +21,41 @@ namespace MarcusCarRentals.Pages.UserOrders
             _userRep = userRep;
             _httpContextAccessor = httpContextAccessor;
         }
-        public void OnGet()
+        public Car SelectedCar { get; set; }
+
+        [BindProperty]
+        public CreateOrderViewModel Model { get; set; }
+        public IActionResult OnGet()
         {
-            
+            var currentUserId = HttpContext.Session.GetString("Email");
+            if(currentUserId != null)
+            {
+                Model = new CreateOrderViewModel();
+                if (int.TryParse(Request.Query["id"], out int id))
+                {
+                    Model.CarId = id;
+                }
+                else
+                {
+                    return RedirectToPage("/Error");
+                }
+                Model.CarOptions = GetCarOptions();
+                return Page();
+            }
+            return RedirectToPage("/UserAuth/Login");
         }
+
+        private IEnumerable<SelectListItem> GetCarOptions()
+        {
+            var availableCars = _carRep.GetAll().ToList();
+
+            return availableCars.Select(car => new SelectListItem
+            {
+                Value = car.CarId.ToString(),
+                Text = $"{car.Brand} {car.Model}"
+            });
+        }
+
 
         public IActionResult OnPost()
         {
@@ -31,35 +65,29 @@ namespace MarcusCarRentals.Pages.UserOrders
             {
                 try
                 {
-                    var carId = Convert.ToInt32(Request.Form["CarId"]);
-                    var startDate = Convert.ToDateTime(Request.Form["StartDate"]);
-                    var endDate = Convert.ToDateTime(Request.Form["EndDate"]);
-
-                    var car = _carRep.GetById(carId);
+                    var car = _carRep.GetById(Model.CarId);
                     var user = _userRep.GetById(currentUserId);
-
                     var order = new Order
                     {
                         Car = car,
                         User = user,
-                        StartDate = startDate,
-                        EndDate = endDate,
+                        StartDate = Model.StartDate,
+                        EndDate = Model.EndDate,
                         IsActive = true
                     };
 
                     _orderRep.Add(order);
                     car.IsAvailable = false;
                     _carRep.Update(car);
-
-                    TempData["SuccessMessage"] = "Order successfully placed!";
+                    TempData["SuccessMessage"] = "Order lagd!";
                     return RedirectToPage("/UserOrders/DisplayOrders");
                 }
                 catch (Exception ex)
                 {
-                    return RedirectToPage("Error");
+                    return RedirectToPage("/Error");
                 }
             }
-            return RedirectToPage("LoginAuth", "Login");
+            return RedirectToPage("/UserAuth/Login");
         }
     }
 }

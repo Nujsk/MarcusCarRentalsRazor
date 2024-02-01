@@ -34,5 +34,10 @@ namespace MarcusCarRentals.Data
             applicationDbContext.Remove(car);
             applicationDbContext.SaveChanges();
         }
+        public string GetImagePath(string brand)
+        {
+            string brandToLower = brand.ToLower();
+            return $"/IMG/{brandToLower}.png";
+        }
     }
 }

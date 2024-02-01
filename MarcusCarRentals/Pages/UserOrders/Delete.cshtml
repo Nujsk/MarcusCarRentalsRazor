@@ -1,4 +1,21 @@
 ﻿@page
 @model MarcusCarRentals.Pages.UserOrders.DeleteModel
-@{
-}
+<link rel="stylesheet" href="~/css/OrderView.css" asp-append-version="true" />
+
+<h2>Är du säker på att du vill ta bort ordern?</h2>
+
+<form method="post">
+    <div>
+        <input type="hidden" asp-for="Order.OrderId" name="Order.OrderId" />
+        <input type="hidden" asp-for="Order.CarId" name="Order.CarId" />
+        <input type="hidden" asp-for="Order.UserId" name="Order.UserId" />
+
+        <button class="delete-confirm-button" type="submit">Ja</button>
+        <a class="delete-cancel-button" asp-page="/UserOrders/DisplayOrders">Nej</a>
+    </div>
+</form>
+<div class="back-to-list">
+    <a asp-page="/UserOrders/DisplayOrders">Tillbaka till lista</a>
+</div>
+
+<div asp-validation-summary="All" class="text-danger"></div>

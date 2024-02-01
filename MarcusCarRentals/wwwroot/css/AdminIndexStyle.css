@@ -1,0 +1,15 @@
+﻿ul {
+    list-style: none;
+}
+
+li {
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+
+li a {
+    text-decoration: none;
+    color: black;
+    transition: color 0.3s ease-in-out;
+    font-size: 20px;
+}

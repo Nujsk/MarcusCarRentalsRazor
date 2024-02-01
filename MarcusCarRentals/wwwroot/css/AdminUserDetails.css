@@ -1,0 +1,23 @@
+﻿.page-title {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+.user-details-container {
+    margin-bottom: 30px;
+}
+.section-title {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+.section-divider {
+    border: 1px solid #ddd;
+    margin-bottom: 20px;
+}
+.label {
+    font-weight: bold;
+}
+.action-links a {
+    color: black;
+    text-decoration: none;
+    margin-right: 10px;
+}

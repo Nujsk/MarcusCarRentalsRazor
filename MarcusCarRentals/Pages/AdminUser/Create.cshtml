@@ -4,22 +4,23 @@
 @{
     ViewData["Title"] = "Create";
 }
+<link rel="stylesheet" href="/css/AdminUserCreate.css"/>
 
-<h1>Create</h1>
+<h1 class="page-title">Create</h1>
 
-<h4>User</h4>
-<hr />
+<h4 class="section-title">User</h4>
+<hr class="section-divider" />
 <div class="row">
     <div class="col-md-4">
-        <form method="post">
+        <form method="post" class="user-form">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="User.Email" class="control-label"></label>
+                <label asp-for="User.Email" class="control-label">Email:</label>
                 <input asp-for="User.Email" class="form-control" />
                 <span asp-validation-for="User.Email" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="User.Password" class="control-label"></label>
+                <label asp-for="User.Password" class="control-label">Password:</label>
                 <input asp-for="User.Password" class="form-control" />
                 <span asp-validation-for="User.Password" class="text-danger"></span>
             </div>
@@ -35,10 +36,9 @@
     </div>
 </div>
 
-<div>
+<div class="back-link">
     <a asp-page="Index">Back to List</a>
 </div>
-
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }

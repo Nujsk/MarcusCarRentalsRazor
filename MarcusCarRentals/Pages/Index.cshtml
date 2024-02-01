@@ -1,10 +1,31 @@
 ﻿@page
-@model IndexModel
+@model MarcusCarRentals.Pages.Cars.IndexModel
 @{
     ViewData["Title"] = "Home page";
 }
+<link rel="stylesheet" href="~/css/IndexPageStyle.css" asp-append-version="true" />
 
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <h1 class="display-4">Välkommen till Friberg Car Rentals!</h1>
+
+    <div class="grid-container">
+        @{
+            var myCars = Model.Cars.ToList();
+            for (int i = 0; i < Math.Min(2, myCars.Count); i++)
+            {
+                <div class="grid-item">
+                    <img src="@Model.GetImage(myCars[i].Brand)" />
+                    <div class="grid-item-info">
+                        <div class="brand-model"></div>
+                        <p class="grid-item-prop">
+                            @Html.DisplayFor(modelItem => myCars[i].Brand) @Html.DisplayFor(modelItem => myCars[i].Model)
+                            Pris: @Html.DisplayFor(modelItem => myCars[i].Price) kr/Dygn
+                        </p>
+                        <p class="car-link"><a asp-page="./Cars/Details" asp-route-id="@myCars[i].CarId">Mer info</a></p>
+                    </div>
+                </div>
+            }
+            <a class="available-cars" asp-area="" asp-page="/Cars/Index">Se alla tillgängliga bilar</a>
+        }
+    </div>
 </div>

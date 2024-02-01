@@ -1,0 +1,29 @@
+﻿.confirmation-message {
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+.user-details-container {
+    margin-bottom: 30px;
+}
+.section-title {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+.section-divider {
+    border: 1px solid #ddd;
+    margin-bottom: 20px;
+}
+.label {
+    font-weight: bold;
+}
+.delete-form {
+    margin-top: 20px;
+}
+.back-link {
+    margin-top: 10px;
+    color: #007bff;
+    text-decoration: none;
+}
+    .back-link:hover {
+        text-decoration: underline;
+    }

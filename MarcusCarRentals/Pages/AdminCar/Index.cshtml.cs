@@ -22,5 +22,9 @@ namespace MarcusCarRentals.Pages.AdminCar
                 Cars = _carRep.GetAll();
             }
         }
+        public string GetImage(string model)
+        {
+            return _carRep.GetImagePath(model);
+        }
     }
 }

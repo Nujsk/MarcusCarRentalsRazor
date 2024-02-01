@@ -2,77 +2,82 @@
 @model MarcusCarRentals.Pages.UserOrders.DisplayOrdersModel
 @{
 }
-<h2>Your Orders</h2>
+<link rel="stylesheet" href="~/css/OrderView.css" asp-append-version="true" />
+<h2 class="section-heading">Dina ordrar</h2>
+
 @if (TempData["SuccessMessage"] != null)
 {
-    <div class="alert alert-success" role="alert">
+    <div class="alert-success" role="alert">
         @TempData["SuccessMessage"]
     </div>
 }
 @if (TempData["OrderDeleted"] != null)
 {
-    <div class="alert alert-danger" role="alert">
+    <div class="alert-danger" role="alert">
         @TempData["OrderDeleted"]
     </div>
 }
+
 @if (Model != null)
 {
-    <p>Active orders:</p>
-    <table>
-        <thead>
-            <tr>
-                <th>Order ID</th>
-                <th>Start Date</th>
-                <th>End Date</th>
-                <th>Car Brand</th>
-                <th>Car Model</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var order in Model.ActiveOrders)
-            {
+    <section class="order-section">
+        <h3>Aktiva ordrar:</h3>
+        <table class="order-table">
+            <thead>
                 <tr>
-                    <td>@order.OrderId</td>
-                    <td>@order.StartDate.ToString("yyyy-MM-dd")</td>
-                    <td>@order.EndDate.ToString("yyyy-MM-dd")</td>
-                    <td>@order.Car.Brand</td>
-                    <td>@order.Car.Model</td>
-                    <td>
-                        <form method="post" asp-page="/UserOrders/Delete" onsubmit="return confirm('Are you sure you want to delete this order?');">
-                            <input type="hidden" name="id" value="@order.OrderId" />
-                            <button type="submit" class="btn btn-danger">Delete</button>
-                        </form>
-                    </td>
+                    <th>Order ID</th>
+                    <th>Startdatum</th>
+                    <th>Slutdatum</th>
+                    <th>Bilmärke</th>
+                    <th>Modell</th>
                 </tr>
-            }
-        </tbody>
-    </table>
-    <p>Past orders:</p>
-    <table>
-        <thead>
-            <tr>
-                <th>Order ID</th>
-                <th>Start Date</th>
-                <th>End Date</th>
-                <th>Car Brand</th>
-                <th>Car Model</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var order in Model.PastOrders)
-            {
+            </thead>
+            <tbody>
+                @foreach (var order in Model.ActiveOrders)
+                {
+                    <tr>
+                        <td>@order.OrderId</td>
+                        <td>@order.StartDate.ToString("yyyy-MM-dd")</td>
+                        <td>@order.EndDate.ToString("yyyy-MM-dd")</td>
+                        <td>@order.Car.Brand</td>
+                        <td>@order.Car.Model</td>
+                        <td>
+                            <div class="action-link">
+                                <a asp-page="/UserOrders/Delete" asp-route-id="@order.OrderId" asp-route-carId="@order.Car.CarId" asp-route-userId="@HttpContext.Session.GetInt32("UserId")">Delete</a>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+        <h3>Tidigare ordrar:</h3>
+        <table class="order-table">
+            <thead>
                 <tr>
-                    <td>@order.OrderId</td>
-                    <td>@order.StartDate.ToString("yyyy-MM-dd")</td>
-                    <td>@order.EndDate.ToString("yyyy-MM-dd")</td>
-                    <td>@order.Car.Brand</td>
-                    <td>@order.Car.Model</td>
+                    <th>Order ID</th>
+                    <th>Startdatum</th>
+                    <th>Slutdatum</th>
+                    <th>Bilmärke</th>
+                    <th>Modell</th>
                 </tr>
-            }
-    </table>
+            </thead>
+            <tbody>
+                @foreach (var order in Model.PastOrders)
+                {
+                    <tr>
+                        <td>@order.OrderId</td>
+                        <td>@order.StartDate.ToString("yyyy-MM-dd")</td>
+                        <td>@order.EndDate.ToString("yyyy-MM-dd")</td>
+                        <td>@order.Car.Brand</td>
+                        <td>@order.Car.Model</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </section>
 }
 else
 {
     <p>No orders found for this user.</p>
-
 }

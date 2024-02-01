@@ -1,24 +1,45 @@
 ﻿@page
 @model MarcusCarRentals.Pages.UserOrders.CreateNewUserOrderModel
 @{
+    ViewData["Title"] = "Create";
 }
-<h1>Create New User Order</h1>
+<link rel="stylesheet" href="~/css/CreateOrderStyle.css" asp-append-version="true" />
 
-<form method="post">
-    <div>
-        <label for="CarId">Car ID:</label>
-        <input type="text" id="CarId" name="CarId" />
-    </div>
+<h2>Välj start och slutdatum</h2>
+<hr />
 
-    <div>
-        <label for="StartDate">Start Date:</label>
-        <input type="text" id="StartDate" name="StartDate" />
-    </div>
+<div class="order-form-container">
+    <form asp-page="./Create" method="post">
+        <div class="validation-summary" asp-validation-summary="ModelOnly"></div>
 
-    <div>
-        <label for="EndDate">End Date:</label>
-        <input type="text" id="EndDate" name="EndDate" />
-    </div>
+        <div class="form-group car-options" style="display: none;">
+            <label asp-for="Model.CarId" class="control-label">Select Car:</label>
+            <select asp-for="Model.CarId" asp-items="Model.Model.CarOptions" class="form-control"></select>
+            <span asp-validation-for="Model.CarId" class="validation-message"></span>
+        </div>
 
-    <input type="submit" value="Place Order" />
-</form>
+        <div class="form-group">
+            <label asp-for="Model.StartDate" class="control-label">Start Date:</label>
+            <input asp-for="Model.StartDate" class="form-control" />
+            <span asp-validation-for="Model.StartDate" class="validation-message"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Model.EndDate" class="control-label">End Date:</label>
+            <input asp-for="Model.EndDate" class="form-control" />
+            <span asp-validation-for="Model.EndDate" class="validation-message"></span>
+        </div>
+
+        <div class="form-group">
+            <input type="submit" value="Hyr bilen" class="btn btn-primary" />
+        </div>
+    </form>
+</div>
+
+<div class="back-to-list">
+    <a asp-page="/Cars/Index">Tillbaka till lista</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -39,5 +39,9 @@ namespace MarcusCarRentals.Pages.AdminCar
             }
             return Page();
         }
+        public string GetImage(string model)
+        {
+            return _carRep.GetImagePath(model);
+        }
     }
 }

@@ -1,0 +1,95 @@
+﻿.section-heading {
+    color: #000;
+    font-size: 24px;
+    margin-bottom: 50px;
+}
+
+.alert-success, .alert-danger{
+    margin-bottom: 15px;
+    max-width: 300px;
+    max-height: 150px;
+    font-size: 30px;
+    text-align: center;
+    border-radius: 10px;
+    text-transform: uppercase;
+}
+.alert-success {
+        background-color: #23cc10;
+}
+.alert-danger {
+        background-color: #f00505;
+}
+
+.order-section {
+    margin-bottom: 20px;
+}
+
+.order-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 15px;
+}
+
+.order-table th, .order-table td {
+        border: 1px solid #ddd;
+        padding: 10px;
+        text-align: left;
+}
+
+.action-link {
+    display: inline-block;
+    padding: 5px 10px;
+    background-color: hsl(360, 100%, 50%);
+    border-radius: 3px;
+}
+.action-link a{
+    color: black;
+}
+
+.action-link:hover {
+        background-color: hsl(360, 100%, 40%);
+}
+
+.delete-confirm-button {
+    margin-top: 20px;
+    display: inline-block;
+    padding: 5px 10px;
+    background-color: hsl(134, 96%, 49%);
+    border: none;
+    border-radius: 5px;
+    margin-left: 2px;
+    width: 75px;
+}
+    .delete-confirm-button a {
+        color: black;
+    }
+    .delete-confirm-button:hover {
+        background-color: hsl(134, 96%, 39%);
+    }
+.back-to-list{
+    margin-bottom: 50px;
+    margin-top: 10px;
+}
+.back-to-list a{
+    text-decoration: none;
+    color: black;
+}
+.delete-cancel-button {
+    margin-top: 20px;
+    display: inline-block;
+    padding: 5px 10px;
+    background-color: hsl(360, 100%, 50%);
+    border: none;
+    border-radius: 5px;
+    margin-left: 2px;
+    width: 75px;
+    height: 26px;
+    text-decoration: none;
+    color: black;
+}
+    .delete-cancel-button:hover {
+        background-color: hsl(360, 100%, 40%);
+    }
+    .delete-cancel-button{
+
+    }

@@ -1,0 +1,38 @@
+﻿.page-title {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+.order-details-container {
+    margin-bottom: 30px;
+    margin-left: 10px;
+}
+.section-title {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+.section-divider {
+    border: 1px solid #ddd;
+    margin-bottom: 20px;
+}
+.label {
+    font-weight: bold;
+}
+.action-buttons a {
+    margin-left: 10px;
+    display: inline-block;
+    padding: 8px 16px;
+    text-decoration: none;
+    color: #fff;
+    background-color: hsl(4, 2%, 17%);
+    border-radius: 4px;
+    transition: background-color 0.3s ease-in-out;
+    margin-bottom: 10px;
+}
+
+    .action-buttons a:hover {
+        background-color: hsl(4°, 2%, 17%);
+    }
+
+    .action-buttons a + a {
+        margin-left: 10px;
+    }

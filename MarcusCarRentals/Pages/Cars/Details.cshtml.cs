@@ -19,7 +19,8 @@ namespace MarcusCarRentals.Pages.Cars
             _carRep = carRep;
         }
 
-      public Car Car { get; set; } = default!; 
+      public Car Car { get; set; } = default!;
+        public IEnumerable<Car> cars;
 
         public IActionResult OnGet(int id)
         {
@@ -38,6 +39,10 @@ namespace MarcusCarRentals.Pages.Cars
                 Car = car;
             }
             return Page();
+        }
+        public string GetImage(string model)
+        {
+            return _carRep.GetImagePath(model);
         }
     }
 }

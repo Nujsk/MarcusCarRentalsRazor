@@ -1,45 +1,47 @@
 ﻿@page
 @model MarcusCarRentals.Pages.AdminOrder.EditModel
-
 @{
     ViewData["Title"] = "Edit";
 }
+<link rel="stylesheet" href="~/css/AdminEdit.css"/>
+<h2>Edit Order</h2>
 
-<h1>Edit</h1>
+<form method="post">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
-<h4>Order</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form method="post">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="Order.OrderId" />
-            <div class="form-group">
-                <label asp-for="Order.StartDate" class="control-label"></label>
-                <input asp-for="Order.StartDate" class="form-control" />
-                <span asp-validation-for="Order.StartDate" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Order.EndDate" class="control-label"></label>
-                <input asp-for="Order.EndDate" class="form-control" />
-                <span asp-validation-for="Order.EndDate" class="text-danger"></span>
-            </div>
-            <div class="form-group form-check">
-                <label class="form-check-label">
-                    <input class="form-check-input" asp-for="Order.IsActive" /> @Html.DisplayNameFor(model => model.Order.IsActive)
-                </label>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
-            </div>
-        </form>
+    <input type="hidden" asp-for="Order.OrderId" />
+
+    <div class="form-group">
+        <label asp-for="Order.StartDate"></label>
+        <input asp-for="Order.StartDate" class="form-control" />
+        <span asp-validation-for="Order.StartDate" class="text-danger"></span>
     </div>
-</div>
 
-<div>
-    <a asp-page="./Index">Back to List</a>
-</div>
+    <div class="form-group">
+        <label asp-for="Order.EndDate"></label>
+        <input asp-for="Order.EndDate" class="form-control" />
+        <span asp-validation-for="Order.EndDate" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Order.CarId"></label>
+        <input asp-for="Order.CarId" class="form-control" />
+        <span asp-validation-for="Order.CarId" class="text-danger"></span>
+    </div>
 
-@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}
+    <div class="form-group">
+        <label asp-for="Order.UserId"></label>
+        <input asp-for="Order.UserId" class="form-control" />
+        <span asp-validation-for="Order.UserId" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Order.IsActive" class="control-label"></label>
+        <div class="form-check">
+            <input asp-for="Order.IsActive" class="form-check-input" />
+            <label class="form-check-label" for="Order_IsActive">Active</label>
+        </div>
+        <span asp-validation-for="Order.IsActive" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Save</button>
+    <a asp-page="./Index" class="back-link">Back to List</a>
+</form>

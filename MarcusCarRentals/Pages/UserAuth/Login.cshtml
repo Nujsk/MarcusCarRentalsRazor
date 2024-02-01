@@ -2,27 +2,28 @@
 @model MarcusCarRentals.Pages.Login.LoginModel
 @{
 }
-@using (Html.BeginForm("Login", "Login", FormMethod.Post))
+<link rel="stylesheet" href="~/css/LoginStyle.css" asp-append-version="true" />
+@using (Html.BeginForm("Login", "Login", FormMethod.Post, new { @class = "login-form" }))
 {
     <div class="login-container">
-        <h1>Login</h1>
+        <h1>Logga in</h1>
         <div class="form-group">
             <div class="login-field">
-                @Html.TextBoxFor(m => m.Email, new {placeholder = "E-mail" })
+                @Html.TextBoxFor(m => m.Email, new { placeholder = "E-mail", @class = "form-control" })
                 @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
             </div>
         </div>
         <div class="form-group">
             <div class="login-field">
-                @Html.PasswordFor(m => m.Password, new {placeholder = "Password"})
+                @Html.PasswordFor(m => m.Password, new { placeholder = "Password", @class = "form-control" })
                 @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
                 @Html.ValidationSummary(true, "", new { @class = "text-danger" })
             </div>
         </div>
         <div class="form-group">
             <div class="login-buttons-container">
-                <button type="button" onclick="location.href='@Url.Page("/UserRegister/Create")'" class="register-button">Register</button>
-                <button type="submit" value="Login" class="login-button">Log in</button>
+                <button type="button" onclick="location.href='@Url.Page("/UserRegister/Create")'" class="register-button">Registrera</button>
+                <button type="submit" value="Login" class="login-button">Logga in</button>
             </div>
         </div>
     </div>

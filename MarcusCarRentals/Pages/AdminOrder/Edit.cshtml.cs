@@ -14,10 +14,14 @@ namespace MarcusCarRentals.Pages.AdminOrder
     public class EditModel : PageModel
     {
         private readonly IOrder _orderRep;
+        private readonly ICar _carRep;
+        private readonly IUser _userRep;
 
-        public EditModel(IOrder orderRep)
+        public EditModel(IOrder orderRep, ICar carRep, IUser userRep)
         {
             _orderRep = orderRep;
+            _carRep = carRep;
+            _userRep = userRep;
         }
 
         [BindProperty]
@@ -25,50 +29,36 @@ namespace MarcusCarRentals.Pages.AdminOrder
 
         public IActionResult OnGet(int id)
         {
-            if (id == null || _orderRep == null)
-            {
-                return NotFound();
-            }
+            Order = _orderRep.GetById(id);
 
-            var order =  _orderRep.GetById(id);
-            if (order == null)
+            if (Order == null)
             {
                 return NotFound();
             }
-            Order = order;
+            Order.Car = _carRep.GetById(Order.CarId);
+            Order.User = _userRep.GetById(Order.UserId);
             return Page();
         }
 
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see https://aka.ms/RazorPagesCRUD.
         public IActionResult OnPost()
         {
-            if (!ModelState.IsValid)
+            Order.Car = _carRep.GetById(Order.CarId);
+            Order.User = _userRep.GetById(Order.UserId);
+
+            if (Order.Car == null || Order.User == null)
             {
-                return Page();
+                return NotFound();
             }
             try
             {
                 _orderRep.Update(Order);
+                return RedirectToPage("/AdminOrder/Index");
             }
-            catch (DbUpdateConcurrencyException)
+            catch (Exception ex)
             {
-                if (!OrderExists(Order.OrderId))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
+                Console.WriteLine(ex.Message);
+                return RedirectToPage("/Error");
             }
-
-            return RedirectToPage("./Index");
-        }
-
-        private bool OrderExists(int id)
-        {
-          return Convert.ToBoolean(_orderRep.GetById(id));
         }
     }
 }

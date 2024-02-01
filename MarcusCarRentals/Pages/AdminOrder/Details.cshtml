@@ -4,46 +4,47 @@
 @{
     ViewData["Title"] = "Details";
 }
+<link rel="stylesheet" href="/css/OrderDetails.css" />
+<h1 class="page-title">Details</h1>
 
-<h1>Details</h1>
-
-<div>
-    <h4>Order</h4>
-    <hr />
+<div class="order-details-container">
+    <h4 class="section-title">Order</h4>
+    <hr class="section-divider" />
     <dl class="row">
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Order.Car.CarId)
+        <dt class="col-sm-2 label">
+            @Html.DisplayNameFor(model => model.Order.Car.CarId):
         </dt>
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Order.Car.CarId)
         </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Order.User.UserId)
+        <dt class="col-sm-2 label">
+            @Html.DisplayNameFor(model => model.Order.User.UserId):
         </dt>
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Order.User.UserId)
         </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Order.StartDate)
+        <dt class="col-sm-2 label">
+            @Html.DisplayNameFor(model => model.Order.StartDate):
         </dt>
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Order.StartDate)
         </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Order.EndDate)
+        <dt class="col-sm-2 label">
+            @Html.DisplayNameFor(model => model.Order.EndDate):
         </dt>
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Order.EndDate)
         </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Order.IsActive)
+        <dt class="col-sm-2 label">
+            @Html.DisplayNameFor(model => model.Order.IsActive):
         </dt>
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Order.IsActive)
         </dd>
     </dl>
 </div>
-<div>
-    <a asp-page="./Edit" asp-route-id="@Model.Order?.OrderId">Edit</a> |
-    <a asp-page="./Index">Back to List</a>
+
+<div class="action-buttons">
+    <a asp-page="./Edit" asp-route-id="@Model.Order?.OrderId" class="edit-button">Edit</a> |
+    <a asp-page="./Index" class="back-button">Back to List</a>
 </div>

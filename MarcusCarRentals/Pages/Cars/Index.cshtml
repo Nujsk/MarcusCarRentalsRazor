@@ -1,49 +1,32 @@
 ﻿@page
 @model MarcusCarRentals.Pages.Cars.IndexModel
-
 @{
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
 
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                Brand)
-            </th>
-            <th>
-                Model)
-            </th>
-            <th>
-                Year)
-            </th>
-            <th>
-                IsAvailable)
-            </th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model.Cars) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Brand)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Model)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Year)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.IsAvailable)
-            </td>
-            <td>
-                <a asp-page="./Details" asp-route-id="@item.CarId">Details</a>
-                <a asp-page="./UserOrders/CreateNewUserOrder" asp-route-id="@item.CarId">Rent this car</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+<link rel="stylesheet" href="~/css/IndexPageStyle.css" asp-append-version="true" />
+
+<div class="text-center">
+    <h1 class="display-4">Alla bilar</h1>
+
+    <div class="grid-container">
+        @{
+            var myCars = Model.Cars.ToList();
+            for (int i = 0; i < myCars.Count; i++)
+            {
+                <div class="grid-item">
+                    <img src="@Model.GetImage(myCars[i].Brand)" />
+                    <div class="grid-item-info">
+                        <div class="brand-model"></div>
+                        <p class="grid-item-prop">
+                            @Html.DisplayFor(modelItem => myCars[i].Brand) @Html.DisplayFor(modelItem => myCars[i].Model) | 
+                            Pris: @Html.DisplayFor(modelItem => myCars[i].Price):-/Dygn
+                        </p>
+                        <p class="car-link"><a asp-page="/UserOrders/CreateNewUserOrder" asp-route-id="@myCars[i].CarId">Hyr mig!</a></p>
+                    </div>
+                </div>
+            }
+        }
+    </div>
+</div>

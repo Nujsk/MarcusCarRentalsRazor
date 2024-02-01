@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Humanizer.Localisation.TimeToClockNotation;
+using System.ComponentModel.DataAnnotations;
 
 namespace MarcusCarRentals.Models
 {
@@ -12,6 +13,9 @@ namespace MarcusCarRentals.Models
         [Required]
         public int Year { get; set; }
         public bool IsAvailable { get; set; }
+        public string Description { get; set; }
+        public int Price { get; set; }
+        public string ImagePath { get; set; } = "";
 
         public Car()
         {

@@ -4,51 +4,34 @@
 @{
     ViewData["Title"] = "Index";
 }
+<link rel="stylesheet" href="/css/IndexPageStyle.css"/>
 
-<h1>Index</h1>
-
-<p>
+<p class="create-link">
     <a asp-page="Create">Create New</a>
 </p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                Brand
-            </th>
-            <th>
-                Model
-            </th>
-            <th>
-                Year
-            </th>
-            <th>
-                IsAvailable
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model.Cars) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Brand)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Model)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Year)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.IsAvailable)
-            </td>
-            <td>
-                <a asp-page="./Edit" asp-route-id="@item.CarId">Edit</a> |
-                <a asp-page="./Details" asp-route-id="@item.CarId">Details</a> |
-                <a asp-page="./Delete" asp-route-id="@item.CarId">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+<div class="text-center">
+
+    <div class="grid-container">
+        @foreach (var item in Model.Cars)
+        {
+            <div class="grid-item">
+                <img src="@Model.GetImage(item.Brand)" />
+                <div class="grid-item-info">
+                    <div class="brand-model">
+                        <p>
+                            @Html.DisplayFor(modelItem => item.Brand) @Html.DisplayFor(modelItem => item.Model)
+                        </p>
+                    </div>
+                    <p class="grid-item-prop">
+                        Pris: @Html.DisplayFor(modelItem => item.Price):-/Dygn
+                    </p>
+                    <p class="car-link">
+                        <a asp-page="./Edit" asp-route-id="@item.CarId">Edit</a> |
+                        <a asp-page="./Details" asp-route-id="@item.CarId">Details</a> |
+                        <a asp-page="./Delete" asp-route-id="@item.CarId">Delete</a>
+                    </p>
+                </div>
+            </div>
+        }
+    </div>
+</div>
