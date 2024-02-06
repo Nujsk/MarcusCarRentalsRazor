@@ -13,6 +13,7 @@
 
 .login-field {
     margin-bottom: 15px;
+    margin-top: 15px;
 }
 
 .form-control {
@@ -35,7 +36,7 @@
 
 .register-button, .login-button {
     background-color: hsl(109, 4%, 23%);
-    color: #fff;
+    color: white;
     padding: 10px 15px;
     border: none;
     border-radius: 4px;

@@ -19,7 +19,7 @@ namespace MarcusCarRentals.Pages.Cars
             _carRep = carRep;
         }
 
-      public Car Car { get; set; } = default!;
+        public Car Car { get; set; } = default!;
         public IEnumerable<Car> cars;
 
         public IActionResult OnGet(int id)

@@ -23,7 +23,14 @@
                             @Html.DisplayFor(modelItem => myCars[i].Brand) @Html.DisplayFor(modelItem => myCars[i].Model) | 
                             Pris: @Html.DisplayFor(modelItem => myCars[i].Price):-/Dygn
                         </p>
-                        <p class="car-link"><a asp-page="/UserOrders/CreateNewUserOrder" asp-route-id="@myCars[i].CarId">Hyr mig!</a></p>
+                        @if (myCars[i].IsAvailable)
+                        {
+                            <p class="car-link"><a asp-page="/UserOrders/CreateNewUserOrder" asp-route-id="@myCars[i].CarId">Hyr mig!</a></p>
+                        }
+                        else
+                        {
+                            <span class="car-not-available">Inte tillgänglig</span>
+                        }
                     </div>
                 </div>
             }

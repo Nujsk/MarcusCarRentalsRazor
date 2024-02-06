@@ -32,7 +32,3 @@
     .action-buttons a:hover {
         background-color: hsl(4°, 2%, 17%);
     }
-
-    .action-buttons a + a {
-        margin-left: 10px;
-    }

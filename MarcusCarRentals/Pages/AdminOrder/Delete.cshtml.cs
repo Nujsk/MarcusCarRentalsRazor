@@ -13,10 +13,12 @@ namespace MarcusCarRentals.Pages.AdminOrder
     public class DeleteModel : PageModel
     {
         private readonly IOrder _orderRep;
+        private readonly ICar _carRep;
 
-        public DeleteModel(IOrder orderRep)
+        public DeleteModel(IOrder orderRep, ICar carRep)
         {
             _orderRep = orderRep;
+            _carRep = carRep;
         }
 
         [BindProperty]
@@ -54,6 +56,8 @@ namespace MarcusCarRentals.Pages.AdminOrder
             {
                 Order = order;
                 _orderRep.Delete(Order);
+                Order.Car.IsAvailable = true;
+                _carRep.Update(Order.Car);
             }
 
             return RedirectToPage("./Index");

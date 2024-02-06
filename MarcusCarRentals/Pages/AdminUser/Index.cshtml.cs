@@ -13,14 +13,11 @@ namespace MarcusCarRentals.Pages.AdminUser
     public class IndexModel : PageModel
     {
         private readonly IUser _userRep;
-
         public IndexModel(IUser userRep)
         {
             _userRep = userRep;
         }
-
         public IEnumerable<User> Users { get;set; } = default!;
-
         public void OnGet()
         {
             if (_userRep != null)

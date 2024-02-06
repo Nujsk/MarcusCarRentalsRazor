@@ -22,8 +22,6 @@ namespace MarcusCarRentals.Pages.AdminUser
         [BindProperty]
         public User User { get; set; } = default!;
         
-
-        // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
         public IActionResult OnPost()
         {
           if (!ModelState.IsValid || _userRep == null || User == null)

@@ -33,9 +33,6 @@ namespace MarcusCarRentals.Pages.AdminCar
             Car = car;
             return Page();
         }
-
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see https://aka.ms/RazorPagesCRUD.
         public IActionResult OnPost()
         {
             if (!ModelState.IsValid)
