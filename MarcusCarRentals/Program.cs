@@ -6,6 +6,10 @@ namespace MarcusCarRentals
 {
     public class Program
     {
+        //TODO: Lista ut varför jag behöver GetCarOptions() när jag egentligen inte vill använda den
+        //TODO: Fixa CSSen
+        //TODO: Fixa metod som räknar ut det totala priset beroende på hur länge man hyr
+        //TODO: Ta bort alla bootstrap-klasser som nu inte används
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
